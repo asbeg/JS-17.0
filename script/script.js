@@ -8,7 +8,7 @@ let money,
 
 money = 1200;
 income = "Freelance";
-addExpenses = "Taxi, School";
+addExpenses = "Taxi, School, Courses";
 deposit = false;
 mission = 80000;
 period = 6;
