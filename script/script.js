@@ -3,7 +3,7 @@
 const money = prompt('Ваш месячный доход?', '12000'),
  income = "Freelance",
  addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую',
-                           'Taxi, School, Courses').toLowerCase().split(': '),
+                           'Taxi, School, Courses').toLowerCase().split(', '),
  deposit = confirm('Есть ли у вас депозит в банке?'),
  period = 6,
  mission = 80000,
