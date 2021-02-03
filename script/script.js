@@ -1,16 +1,26 @@
 'use strict';
 
-const money = +prompt('Ваш месячный доход?', '12000'),
-    addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую',
-        'Taxi, School, Courses').toLowerCase().split(', '),
+let money;
+
+const isNumber = function (n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    },
+    start = function () {
+        do {
+            money = prompt('Месячный доход: ');
+        } while (!isNumber(money))
+        {
+            money = prompt('Месячный доход: ');
+        }
+    };
+
+start();
+
+const addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую',
+    'Taxi, School, Courses').toLowerCase().split(', '),
     deposit = confirm('Есть ли у вас депозит в банке?'),
     income = "Freelance",
     mission = 80000,
-
-    expenses1 = prompt('Введите обязательную статью расходов?', 'School'),
-    amount1 = +prompt('Во сколько это обойдется?', '500'),
-    expenses2 = prompt('Введите обязательную статью расходов?', 'Taxi'),
-    amount2 = +prompt('Во сколько это обойдется?', '1000'),
 
     showTypeOf = function (data) {
         console.log(data, typeof (data));
@@ -29,7 +39,18 @@ const money = +prompt('Ваш месячный доход?', '12000'),
     },
 
     getExpensesMonth = function () {
-        return amount1 + amount2;
+        let sum = 0,
+            amount = 0,
+            expenses = [];
+        for (let i = 0; i < 2; i++) {
+            expenses[i] = prompt('Введите обязательную статью расходов...');
+            do {
+                sum = prompt('Во сколько это обойдется?');
+            } while (!isNumber(sum));
+            amount += sum;
+        }
+        return amount;
+        console.log("GYFTYFT", amount);
     },
 
     getAccumulatedMonth = function () {
@@ -40,15 +61,18 @@ const money = +prompt('Ваш месячный доход?', '12000'),
     budgetDay = Math.floor(accumulatedMonth / 30),
 
     getTargetMonth = function () {
-        return Math.ceil(mission / accumulatedMonth);
+        const missionMonth = Math.ceil(mission / accumulatedMonth);
+        if (missionMonth < 0) {
+            return ('Цель не будет достигнута');
+        } else
+            return ('Цель будет достигнута за ' + missionMonth + ' месяцев');
     };
 
 showTypeOf(money);
 showTypeOf(income);
 showTypeOf(deposit);
 
-console.log("Расходы за месяц: ", getExpensesMonth());
 console.log(addExpenses);
-console.log("Цель будет достигнута за: " + getTargetMonth() + " месяцев");
+console.log(getTargetMonth());
 console.log("Бюджет на день: " + budgetDay);
 console.log(getStatusIncome());
