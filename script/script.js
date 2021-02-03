@@ -8,10 +8,7 @@ const isNumber = function (n) {
     start = function () {
         do {
             money = prompt('Месячный доход: ');
-        } while (!isNumber(money))
-        {
-            money = prompt('Месячный доход: ');
-        }
+        } while (!isNumber(money));
     };
 
 start();
@@ -50,7 +47,6 @@ const addExpenses = prompt('Перечислите возможные расхо
             amount += sum;
         }
         return amount;
-        console.log("GYFTYFT", amount);
     },
 
     getAccumulatedMonth = function () {
