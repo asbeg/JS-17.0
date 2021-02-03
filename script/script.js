@@ -42,10 +42,11 @@ const addExpenses = prompt('Перечислите возможные расхо
         for (let i = 0; i < 2; i++) {
             expenses[i] = prompt('Введите обязательную статью расходов...');
             do {
-                sum = prompt('Во сколько это обойдется?');
+                sum = +prompt("Во сколько это обойдется");
             } while (!isNumber(sum));
             amount += sum;
         }
+        console.log("Расходы за месяц", amount);
         return amount;
     },
 
