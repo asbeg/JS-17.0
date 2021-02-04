@@ -1,13 +1,14 @@
 'use strict';
 
-let money;
+let money = 0;
+console.log(typeof money);
 
 const isNumber = function (n) {
         return !isNaN(parseFloat(n)) && isFinite(n);
     },
     start = function () {
         do {
-            money = prompt('Месячный доход: ');
+            money = parseInt(prompt('Месячный доход: '));
         } while (!isNumber(money));
     };
 
@@ -42,16 +43,16 @@ const addExpenses = prompt('Перечислите возможные расхо
         for (let i = 0; i < 2; i++) {
             expenses[i] = prompt('Введите обязательную статью расходов...');
             do {
-                sum = +prompt("Во сколько это обойдется");
+                sum = prompt("Во сколько это обойдется");
             } while (!isNumber(sum));
-            amount += sum;
+            amount += +sum;
         }
         console.log("Расходы за месяц", amount);
         return amount;
     },
 
     getAccumulatedMonth = function () {
-        return money - getExpensesMonth();
+        return +money - getExpensesMonth();
     },
 
     accumulatedMonth = getAccumulatedMonth(),
@@ -59,12 +60,11 @@ const addExpenses = prompt('Перечислите возможные расхо
 
     getTargetMonth = function () {
         const missionMonth = Math.ceil(mission / accumulatedMonth);
-        if (missionMonth < 0) {
+        if ((missionMonth < 0) || (!isNumber(missionMonth))) {
             return ('Цель не будет достигнута');
         } else
             return ('Цель будет достигнута за ' + missionMonth + ' месяцев');
     };
-
 showTypeOf(money);
 showTypeOf(income);
 showTypeOf(deposit);
