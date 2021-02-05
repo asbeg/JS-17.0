@@ -27,7 +27,7 @@ let appData = {
     expensesMonth: 0,
 
     asking: function () {
-        let keys = [], value;
+        let value;
 
         appData.addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую',
             'Taxi, School, Courses').toLowerCase().split(', ');
@@ -35,8 +35,7 @@ let appData = {
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
         for (let i = 0; i < 2; i++) {
-            keys[i] = prompt('Введите обязательную статью расходов...');
-            let key = keys[i];
+            const key = prompt('Введите обязательную статью расходов...');
             do {
                 value = parseInt(prompt("Во сколько это обойдется?"));
             } while (!isNumber(value));
