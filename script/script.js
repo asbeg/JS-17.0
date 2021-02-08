@@ -48,15 +48,16 @@ let appData = {
 
         let value, key;
 
-        appData.addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую',
-            'Taxi, School, Courses').toLowerCase().split(', ');
+        let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую',
+            'Taxi, School, Courses');
+        appData.addExpenses = (addExpenses ? addExpenses : '').toLowerCase().split(',');
 
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
         for (let i = 0; i < 2; i++) {
             do {
                 key = prompt('Введите обязательную статью расходов...');
-            } while (!hasNumber(key));
+            } while (hasNumber(key));
 
             do {
                 value = parseInt(prompt("Во сколько это обойдется?"));
