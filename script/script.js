@@ -7,8 +7,10 @@ const isNumber = function (n) {
     },
 
     hasNumber = function (str) {
-        return (/\D/.test(str) && !(str.replace(/\s/g, "") === ""));
+    if (typeof str != 'string') return false
+        return isNaN(str) && isNaN(parseFloat(str))
     },
+
     start = function () {
         do {
             money = parseInt(prompt('Месячный доход: ', '5000'));
@@ -39,7 +41,7 @@ let appData = {
         if (confirm('Есть ли у вас дополнительный источник заработка?')) {
             do {
                 itemIncome = prompt('Какой у вас дополнительный заработок?', 'Taxi');
-            } while (!hasNumber(itemIncome));
+            } while (!hasNumber (itemIncome));
             do {
                 cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', '10000');
             } while (!isNumber(cashIncome));
@@ -57,7 +59,7 @@ let appData = {
         for (let i = 0; i < 2; i++) {
             do {
                 key = prompt('Введите обязательную статью расходов...');
-            } while (hasNumber(key));
+            } while (!hasNumber (key));
 
             do {
                 value = parseInt(prompt("Во сколько это обойдется?"));
