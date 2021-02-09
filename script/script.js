@@ -184,7 +184,7 @@ const startBtn = document.getElementById('start'),
     incomeAmount = document.querySelector('input[class=income-amount]'),
 
     depositAmount = document.querySelector('input[class=deposit-amount]'),
-    depositPercent = document.querySelector('input[class=deposit-amount]');
+    depositPercent = document.querySelector('input[class=deposit-percent]');
 
 
 console.log(startBtn);
