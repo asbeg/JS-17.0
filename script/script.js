@@ -7,7 +7,7 @@ const isNumber = function (n) {
     },
 
     hasNumber = function (str) {
-    if (typeof str != 'string') return false
+        if (typeof str != 'string') return false
         return isNaN(str) && isNaN(parseFloat(str))
     },
 
@@ -41,7 +41,7 @@ let appData = {
         if (confirm('Есть ли у вас дополнительный источник заработка?')) {
             do {
                 itemIncome = prompt('Какой у вас дополнительный заработок?', 'Taxi');
-            } while (!hasNumber (itemIncome));
+            } while (!hasNumber(itemIncome));
             do {
                 cashIncome = parseInt(prompt('Сколько в месяц вы на этом зарабатываете?', '10000'));
             } while (!isNumber(cashIncome));
@@ -51,15 +51,19 @@ let appData = {
         let value, key;
 
         let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую',
-            'Taxi,School,Courses');
-        appData.addExpenses = (addExpenses ? addExpenses : '').toLowerCase().split(',');
+            'Taxi, School, Courses');
+        appData.addExpenses = (addExpenses ? addExpenses : '').toLowerCase().split(', ');
+        let arLength = appData.addExpenses;
+        for (let i = 0; i < arLength.length; i++) {
+            appData.addExpenses[i] = arLength[i].trim();
+        }
 
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
 
         for (let i = 0; i < 2; i++) {
             do {
                 key = prompt('Введите обязательную статью расходов...');
-            } while (!hasNumber (key));
+            } while (!hasNumber(key));
 
             do {
                 value = parseInt(prompt("Во сколько это обойдется?"));
@@ -133,14 +137,14 @@ console.log(appData.addExpenses);
 
 //2 каждое слово с большой буквы
 function upperCaseFirst() {
-    let str = appData.addExpenses.join(', ');
-    let newStr = str.replace(/(^|\s)\S/g, function (a) {
-        return a.toUpperCase()
-    });
-    console.log(newStr);
+    let newStr = appData.addExpenses;
+    for (let i = 0; i < newStr.length; i++) {
+        newStr[i] = newStr[i].charAt(0).toUpperCase() + newStr[i].substring(1);
+    }
+    return newStr.join(', ');
 }
 
-upperCaseFirst();
+console.log(upperCaseFirst());
 
 // *** 13 ***
 
