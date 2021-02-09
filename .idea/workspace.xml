@@ -127,13 +127,18 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1612385088799" />
-    <state x="1672" y="256" key="Vcs.Push.Dialog.v2" timestamp="1611933189004">
-      <screen x="1600" y="0" width="1920" height="1040" />
-    </state>
-    <state x="1672" y="256" key="Vcs.Push.Dialog.v2/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1611933189004" />
-    <state x="456" y="195" key="run.anything.popup" timestamp="1612531369980">
+    <state x="60" y="212" key="Vcs.Push.Dialog.v2" timestamp="1612891169409">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="456" y="195" key="run.anything.popup/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1612531369980" />
+    <state x="60" y="212" key="Vcs.Push.Dialog.v2/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1612891169409" />
+    <state x="1672" y="256" key="Vcs.Push.Dialog.v2/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1611933189004" />
+    <state x="14" y="0" width="792" height="846" key="dock-window-1" timestamp="1612891601804">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="14" y="0" width="792" height="846" key="dock-window-1/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1612891601804" />
+    <state x="456" y="195" key="run.anything.popup" timestamp="1612891587776">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="456" y="195" key="run.anything.popup/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1612891587776" />
   </component>
 </project>
