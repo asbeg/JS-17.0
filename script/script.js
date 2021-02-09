@@ -181,7 +181,10 @@ const startBtn = document.getElementById('start'),
     expenseTitle = document.querySelector('input[class=expenses-title]'),
     salaryAmount = document.querySelector('input[class=salary-amount]'),
     incomeTitle = document.querySelector('input[class=income-title]'),
-    incomeAmount = document.querySelector('input[class=income-amount]');
+    incomeAmount = document.querySelector('input[class=income-amount]'),
+
+    depositAmount = document.querySelector('input[class=deposit-amount]'),
+    depositPercent = document.querySelector('input[class=deposit-amount]');
 
 
 console.log(startBtn);
@@ -207,3 +210,5 @@ console.log(expenseTitle);
 console.log(salaryAmount);
 console.log(incomeTitle);
 console.log(incomeAmount);
+console.log(depositAmount);
+console.log(depositPercent);
