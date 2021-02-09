@@ -43,7 +43,7 @@ let appData = {
                 itemIncome = prompt('Какой у вас дополнительный заработок?', 'Taxi');
             } while (!hasNumber (itemIncome));
             do {
-                cashIncome = prompt('Сколько в месяц вы на этом зарабатываете?', '10000');
+                cashIncome = parseInt(prompt('Сколько в месяц вы на этом зарабатываете?', '10000'));
             } while (!isNumber(cashIncome));
             appData.income[itemIncome] = cashIncome;
         }
@@ -107,10 +107,10 @@ let appData = {
     getInfoDeposit: function () {
         if (appData.deposit) {
             do {
-                appData.percentDeposit = prompt('Какой годовой процент?', '10');
+                appData.percentDeposit = parseInt(prompt('Какой годовой процент?', '10'));
             } while (!isNumber(appData.percentDeposit));
             do {
-                appData.moneyDeposit = prompt('Какая сумма заложенв?', '10000');
+                appData.moneyDeposit = parseInt(prompt('Какая сумма заложенв?', '10000'));
             } while (!isNumber(appData.moneyDeposit));
         }
         return appData.percentDeposit, appData.moneyDeposit;
