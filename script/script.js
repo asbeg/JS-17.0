@@ -50,7 +50,7 @@ let appData = {
     deposit: false,
     percentDeposit: 0,
     moneyDeposit: 0,
-    mission: 50000,
+    mission: 0,
     period: 0,
     budget: 0,
     incomeMonth: 0,
@@ -77,8 +77,8 @@ let appData = {
         budgetMonthValue.value = appData.budgetMonth;
         budgetDayValue.value = appData.budgetDay;
         expensesMonthValue.value = appData.expensesMonth;
-        additionalExpensesValue.value = appData.addExpenses.join(', ');
-        additionalIncomeValue.value = appData.addIncome.join(', ');
+        additionalExpensesValue.value = upperCaseFirst(appData.addExpenses);
+        additionalIncomeValue.value = upperCaseFirst(appData.addIncome);
         targetMonthValue.value = appData.getTargetMonth();
         incomePeriodValue.value = appData.calcSavedMoney();
 
@@ -88,7 +88,15 @@ let appData = {
     },
 
     addExpensesBlock: function () {
-        let cloneExpensesItem = expensesItems[0].cloneNode(true);
+        /*
+                const input = document.createElement('input');
+                expensesItems = document.querySelectorAll('.expenses-items')[0];
+                input.innerHTML = `<input type="text" class="income-title" placeholder="Наименование">`;
+                expensesItems.appendChild(input);
+        */
+
+
+        let cloneExpensesItem = expensesItems[0].cloneNode(false);
         expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesAdd);
         expensesItems = document.querySelectorAll('.expenses-items');
         if (expensesItems.length === 3) {
@@ -163,6 +171,9 @@ let appData = {
 
     // расчет за ск. будет достигнута цель
     getTargetMonth: function () {
+        if (salaryAmount.value === '') {
+            return targetMonthValue.value = '';
+        }
         const missionMonth = Math.ceil(targetAmount.value / appData.budgetMonth);
         if ((missionMonth < 0) || (!isNumber(missionMonth))) {
             return ('Цель не будет достигнута');
@@ -224,14 +235,14 @@ salaryAmount.addEventListener('input', appData.success);
 periodSelect.addEventListener('input', appData.showResult);
 
 //2 каждое слово с большой буквы
-/*function upperCaseFirst() {
-    let newStr = appData.addExpenses;
+function upperCaseFirst(newStr) {
     for (let i = 0; i < newStr.length; i++) {
-        newStr[i] = newStr[i].charAt(0).toUpperCase() + newStr[i].substring(1);
+        newStr[i] = newStr[i].charAt(0).toUpperCase() + newStr[i].substring(1).toLowerCase();
     }
     return newStr.join(', ');
 }
-console.log(upperCaseFirst());*/
+
+// console.log(upperCaseFirst());
 
 // *** 13 ***
 /*
