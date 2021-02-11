@@ -55,7 +55,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JS-2-complicated-Tasks" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../youDontKnowJS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -83,7 +83,10 @@
       <workItem from="1612522634062" duration="13822000" />
       <workItem from="1612792595053" duration="20564000" />
       <workItem from="1612860683403" duration="2491000" />
-      <workItem from="1612904813802" duration="519000" />
+      <workItem from="1612904813802" duration="870000" />
+      <workItem from="1612960259931" duration="581000" />
+      <workItem from="1612962773582" duration="1505000" />
+      <workItem from="1613050521422" duration="21215000" />
     </task>
     <task id="LOCAL-00001" summary="Lesson02">
       <created>1611933182026</created>
@@ -124,19 +127,19 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="508" y="88" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1611855440747" />
-    <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1612385088799">
+    <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1612960741852">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1612385088799" />
+    <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1612960741851" />
     <state x="60" y="212" key="Vcs.Push.Dialog.v2" timestamp="1612891169409">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="60" y="212" key="Vcs.Push.Dialog.v2/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1612891169409" />
     <state x="1672" y="256" key="Vcs.Push.Dialog.v2/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1611933189004" />
-    <state x="14" y="0" width="792" height="846" key="dock-window-1" timestamp="1612891601804">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="1600" y="0" width="1595" height="847" maximized="true" key="dock-window-1" timestamp="1613070503357">
+      <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state x="14" y="0" width="792" height="846" key="dock-window-1/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1612891601804" />
+    <state x="1600" y="0" width="1595" height="847" maximized="true" key="dock-window-1/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1613070503357" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1612891587776">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
