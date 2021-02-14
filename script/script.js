@@ -6,7 +6,6 @@ let startBtn = document.getElementById('start'),
     depositCheck = document.querySelector('#deposit-check'),
     //Возможный доход
     additionalIncomeItem = document.querySelectorAll('.additional_income-item'),
-
     // e
     budgetMonthValue = document.getElementsByClassName('budget_month-value')[0],
     budgetDayValue = document.getElementsByClassName('budget_day-value')[0],
@@ -15,10 +14,8 @@ let startBtn = document.getElementById('start'),
     additionalExpensesValue = document.getElementsByClassName('additional_expenses-value')[0],
     incomePeriodValue = document.getElementsByClassName('income_period-value')[0],
     targetMonthValue = document.getElementsByClassName('target_month-value')[0],
-
     // range
     periodSelect = document.querySelector('input[class=period-select]'),
-
     // f
     targetAmount = document.querySelector('input[class=target-amount]'),
     additionalExpensesItem = document.querySelector('input[class=additional_expenses-item]'),
@@ -27,16 +24,13 @@ let startBtn = document.getElementById('start'),
     salaryAmount = document.querySelector('input[class=salary-amount]'),
     incomeTitle = document.querySelector('input[class=income-title]'),
     incomeAmount = document.querySelector('input[class=income-amount]'),
-
     depositAmount = document.querySelector('input[class=deposit-amount]'),
     depositPercent = document.querySelector('input[class=deposit-percent]'),
-
     incomeItems = document.querySelectorAll('.income-items');
 
 const isNumber = function (n) {
         return !isNaN(parseFloat(n)) && isFinite(n);
     },
-
     hasNumber = function (str) {
         if (typeof str != 'string') return false
         return isNaN(str) && isNaN(parseFloat(str))
@@ -72,6 +66,7 @@ let appData = {
         appData.getPeriod();
         appData.showResult();
     },
+
     showResult: function () {
         budgetMonthValue.value = appData.budgetMonth;
         budgetDayValue.value = appData.budgetDay;
@@ -87,16 +82,21 @@ let appData = {
     },
 
     addExpensesBlock: function () {
-        /*
-                const input = document.createElement('input');
-                expensesItems = document.querySelectorAll('.expenses-items')[0];
-                input.innerHTML = `<input type="text" class="income-title" placeholder="Наименование">`;
-                expensesItems.appendChild(input);
-        */
-
-
-        let cloneExpensesItem = expensesItems[0].cloneNode(false);
+        const cloneExpensesItem = expensesItems[0].cloneNode(true);
         expensesItems[0].parentNode.insertBefore(cloneExpensesItem, expensesAdd);
+        const input = cloneExpensesItem.querySelectorAll('input');
+
+        input.forEach(function (item) {
+            const textItem = cloneExpensesItem.querySelector('input[placeholder="Наименование"]');
+            const numItem = cloneExpensesItem.querySelector('input[placeholder="Сумма"]');
+            if (!item.getAttribute('placeholder="Наименование"')) {
+                appData.textValidate(textItem);
+            }
+            if (!item.getAttribute('placeholder="Сумма"')) {
+                appData.numberValidate(numItem);
+            }
+            item.value = '';
+        });
         expensesItems = document.querySelectorAll('.expenses-items');
         if (expensesItems.length === 3) {
             expensesAdd.style.display = 'none';
@@ -106,6 +106,18 @@ let appData = {
     addIncomeBlock: function () {
         let cloneIncomeItem = incomeItems[0].cloneNode(true);
         incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomeAdd);
+        const input = cloneIncomeItem.querySelectorAll('input');
+        input.forEach(function (item) {
+            const textItem = cloneIncomeItem.querySelector('input[placeholder="Наименование"]');
+            const numItem = cloneIncomeItem.querySelector('input[placeholder="Сумма"]');
+            if (!item.getAttribute('placeholder="Наименование"')) {
+                appData.textValidate(textItem);
+            }
+            if (!item.getAttribute('placeholder="Сумма"')) {
+                appData.numberValidate(numItem);
+            }
+            item.value = '';
+        });
         incomeItems = document.querySelectorAll('.income-items');
         if (incomeItems.length === 3) {
             incomeAdd.style.display = 'none';
@@ -217,8 +229,26 @@ let appData = {
 
     calcSavedMoney: function () {
         return appData.budgetMonth * periodSelect.value;
-    }
+    },
+
+    textValidate: function (a) {
+        a.addEventListener('input', () => {
+            a.value = a.value.replace(/[^?!, .а-яА-ЯёЁ]/, '');
+        });
+    },
+
+    numberValidate: function (a) {
+        a.addEventListener('input', () => {
+            a.value = a.value.replace(/[^0-9]/, '');
+        });
+    },
 };
+
+let inputTitle = document.querySelectorAll('input[placeholder="Наименование"]');
+inputTitle.forEach(input => appData.textValidate(input));
+
+let inputSum = document.querySelectorAll('input[placeholder="Сумма"]');
+inputSum.forEach(input => appData.numberValidate(input));
 
 appData.success();
 
@@ -229,19 +259,16 @@ periodSelect.addEventListener('input', appData.getPeriod);
 
 salaryAmount.addEventListener('input', appData.success);
 
-
 // ***  5  ***
 periodSelect.addEventListener('input', appData.showResult);
 
 //2 каждое слово с большой буквы
 function upperCaseFirst(newStr) {
     for (let i = 0; i < newStr.length; i++) {
-        newStr[i] = newStr[i].charAt(0).toUpperCase() + newStr[i].substring(1).toLowerCase();
+        newStr[i] = newStr[i].charAt(0).toUpperCase().trim() + newStr[i].substring(1).toLowerCase().trim();
     }
     return newStr.join(', ');
 }
-
-// console.log(upperCaseFirst());
 
 // *** 13 ***
 /*
@@ -250,5 +277,3 @@ for (let key in appData) {
     console.log("Наша программа включает в себя данные: " + key + " = " + value);
 }
 */
-
-
