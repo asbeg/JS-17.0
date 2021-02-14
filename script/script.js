@@ -72,7 +72,6 @@ let appData = {
         appData.getPeriod();
         appData.showResult();
     },
-
     showResult: function () {
         budgetMonthValue.value = appData.budgetMonth;
         budgetDayValue.value = appData.budgetDay;
