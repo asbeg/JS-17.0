@@ -101,22 +101,20 @@ let appData = {
         cancelBtn.style.display = 'none';
         startBtn.style.display = 'block';
         depositCheck.checked = false;
-        appData = {
-            addExpenses: [],
-            addIncome: [],
-            budget: 0,
-            budgetDay: 0,
-            budgetMonth: 0,
-            deposit: false,
-            expenses: {},
-            expensesMonth: 0,
-            income: {},
-            incomeMonth: 0,
-            mission: 0,
-            moneyDeposit: 0,
-            period: 0,
-            percentDeposit: 0
-        }
+        this.addExpenses = [];
+        this.addIncome = [];
+        this.budget = 0;
+        this.budgetDay = 0;
+        this.budgetMonth = 0;
+        this.deposit = false;
+        this.expenses = {};
+        this.expensesMonth = 0;
+        this.income = {};
+        this.incomeMonth = 0;
+        this.mission = 0;
+        this.moneyDeposit = 0;
+        this.period = 0;
+        this.percentDeposit = 0;
         this.success();
     },
 
