@@ -88,7 +88,8 @@
       <workItem from="1612960259931" duration="581000" />
       <workItem from="1612962773582" duration="1505000" />
       <workItem from="1613050521422" duration="26112000" />
-      <workItem from="1613382826794" duration="13630000" />
+      <workItem from="1613382826794" duration="16257000" />
+      <workItem from="1613494646053" duration="15278000" />
     </task>
     <task id="LOCAL-00001" summary="Lesson02">
       <created>1611933182026</created>
@@ -142,10 +143,11 @@
     </state>
     <state x="60" y="212" key="Vcs.Push.Dialog.v2/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1612891169409" />
     <state x="1672" y="256" key="Vcs.Push.Dialog.v2/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1611933189004" />
-    <state x="1985" y="-16" width="1595" height="847" maximized="true" key="dock-window-1" timestamp="1613423139664">
-      <screen x="1600" y="0" width="1920" height="1040" />
+    <state x="-62" y="-13" width="1392" height="783" key="dock-window-1" timestamp="1613517079391">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="1985" y="-16" width="1595" height="847" maximized="true" key="dock-window-1/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1613423139664" />
+    <state x="1746" y="-11" width="1670" height="947" maximized="true" key="dock-window-1/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1613509728765" />
+    <state x="-62" y="-13" width="1392" height="783" key="dock-window-1/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1613517079391" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1612891587776">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
