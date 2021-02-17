@@ -31,8 +31,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -55,10 +55,19 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../youDontKnowJS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/script" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\begai\WebstormProjects\JS-17.0\script" />
+      <recent name="C:\Users\begai\WebstormProjects\JS-17.0\Lesson14" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\begai\WebstormProjects\JS-17.0\script" />
+    </key>
   </component>
   <component name="RunAnythingContextRecentDirectoryCache">
     <option name="paths">
@@ -89,7 +98,8 @@
       <workItem from="1612962773582" duration="1505000" />
       <workItem from="1613050521422" duration="26112000" />
       <workItem from="1613382826794" duration="16257000" />
-      <workItem from="1613494646053" duration="15278000" />
+      <workItem from="1613494646053" duration="15555000" />
+      <workItem from="1613547532652" duration="23520000" />
     </task>
     <task id="LOCAL-00001" summary="Lesson02">
       <created>1611933182026</created>
@@ -143,6 +153,11 @@
     </state>
     <state x="60" y="212" key="Vcs.Push.Dialog.v2/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1612891169409" />
     <state x="1672" y="256" key="Vcs.Push.Dialog.v2/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1611933189004" />
+    <state x="648" y="359" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1613581476533">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="648" y="359" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1613581476533" />
+    <state x="2377" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1613521618546" />
     <state x="-62" y="-13" width="1392" height="783" key="dock-window-1" timestamp="1613517079391">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
