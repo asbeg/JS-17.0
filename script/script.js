@@ -93,15 +93,31 @@ let appData = {
         for (let i = expensesItems.length - 1; i > 0; i--) {
             expensesItems[0].parentNode.removeChild(expensesItems[i]);
         }
-        appData.leftInputsBlock(false);
-        document.querySelectorAll('input[type=text]').forEach(item => {
+        this.leftInputsBlock(false);
+        document.querySelectorAll('input[type=text]').forEach(function (item) {
             item.value = '';
         });
         periodSelect.value = document.querySelector('.period-amount').textContent = 1;
         cancelBtn.style.display = 'none';
         startBtn.style.display = 'block';
         depositCheck.checked = false;
-        appData.success();
+        appData = {
+            addExpenses: [],
+            addIncome: [],
+            budget: 0,
+            budgetDay: 0,
+            budgetMonth: 0,
+            deposit: false,
+            expenses: {},
+            expensesMonth: 0,
+            income: {},
+            incomeMonth: 0,
+            mission: 0,
+            moneyDeposit: 0,
+            period: 0,
+            percentDeposit: 0
+        }
+        this.success();
     },
 
     showResult: function () {
@@ -123,10 +139,10 @@ let appData = {
             const textItem = cloneIncomeItem.querySelector('input[placeholder="Наименование"]');
             const numItem = cloneIncomeItem.querySelector('input[placeholder="Сумма"]');
             if (!item.getAttribute('placeholder="Наименование"')) {
-                appData.textValidate(textItem);
+                this.textValidate(textItem);
             }
             if (!item.getAttribute('placeholder="Сумма"')) {
-                appData.numberValidate(numItem);
+                this.numberValidate(numItem);
             }
             item.value = '';
         });
@@ -145,10 +161,10 @@ let appData = {
             const textItem = cloneExpensesItem.querySelector('input[placeholder="Наименование"]');
             const numItem = cloneExpensesItem.querySelector('input[placeholder="Сумма"]');
             if (!item.getAttribute('placeholder="Наименование"')) {
-                appData.textValidate(textItem);
+                this.textValidate(textItem);
             }
             if (!item.getAttribute('placeholder="Сумма"')) {
-                appData.numberValidate(numItem);
+                this.numberValidate(numItem);
             }
             item.value = '';
         });
@@ -239,7 +255,6 @@ let appData = {
             return ('Что то пошло не так');
         }
     },*/
-
     /*    getInfoDeposit: function () {
             if (this.deposit) {
                 do {
@@ -255,7 +270,7 @@ let appData = {
     // ** 4 ** RangeInput
     getPeriod: function (event) {
         document.querySelector('.period-amount').textContent = event.target.value;
-        incomePeriodValue.value = appData.calcSavedMoney();
+        incomePeriodValue.value = this.calcSavedMoney();
     },
 
     success: function () {
@@ -280,15 +295,20 @@ let appData = {
 };
 
 
-const funcStart = appData.start.bind(appData);
+const funcStart = appData.start.bind(appData),
+    addExpensesBlock = appData.addExpensesBlock.bind(appData),
+    addIncomeBlock = appData.addIncomeBlock.bind(appData),
+    getPeriod = appData.getPeriod.bind(appData),
+    reset = appData.reset.bind(appData),
+    success = appData.success.bind(appData);
 
 appData.success();
 startBtn.addEventListener('click', funcStart);
-cancelBtn.addEventListener('click', appData.reset);
-expensesAdd.addEventListener('click', appData.addExpensesBlock);
-incomeAdd.addEventListener('click', appData.addIncomeBlock);
-periodSelect.addEventListener('input', appData.getPeriod);
-salaryAmount.addEventListener('input', appData.success);
+cancelBtn.addEventListener('click', reset);
+expensesAdd.addEventListener('click', addExpensesBlock);
+incomeAdd.addEventListener('click', addIncomeBlock);
+periodSelect.addEventListener('input', getPeriod);
+salaryAmount.addEventListener('input', success);
 
 let inputTitle = document.querySelectorAll('input[placeholder="Наименование"]');
 inputTitle.forEach(input => appData.textValidate(input));
@@ -311,4 +331,3 @@ for (let key in appData) {
     console.log("Наша программа включает в себя данные: " + key + " = " + value);
 }
 */
-
