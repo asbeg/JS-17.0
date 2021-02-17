@@ -297,14 +297,14 @@ AppData.prototype.upperCaseFirst = function (newStr) {
 }
 
 AppData.prototype.eventListeners = function () {
-    const funcStart = appData.start.bind(appData),
-        addExpensesBlock = appData.addExpensesBlock.bind(appData),
-        addIncomeBlock = appData.addIncomeBlock.bind(appData),
-        getPeriod = appData.getPeriod.bind(appData),
-        reset = appData.reset.bind(appData),
-        success = appData.success.bind(appData);
+    const funcStart = this.start.bind(this),
+        addExpensesBlock = this.addExpensesBlock.bind(this),
+        addIncomeBlock = this.addIncomeBlock.bind(this),
+        getPeriod = this.getPeriod.bind(this),
+        reset = this.reset.bind(this),
+        success = this.success.bind(this);
 
-    appData.success();
+    this.success();
     startBtn.addEventListener('click', funcStart);
     cancelBtn.addEventListener('click', reset);
     expensesAdd.addEventListener('click', addExpensesBlock);
@@ -313,10 +313,10 @@ AppData.prototype.eventListeners = function () {
     salaryAmount.addEventListener('input', success);
 
     let inputTitle = document.querySelectorAll('input[placeholder="Наименование"]');
-    inputTitle.forEach(input => appData.textValidate(input));
+    inputTitle.forEach(input => this.textValidate(input));
 
     let inputSum = document.querySelectorAll('input[placeholder="Сумма"]');
-    inputSum.forEach(input => appData.numberValidate(input));
+    inputSum.forEach(input => this.numberValidate(input));
 }
 
 const appData = new AppData();
