@@ -115,7 +115,7 @@ class AppData {
     };
 
     addIncomeBlock() {
-        let cloneIncomeItem = incomeItems[0].cloneNode(true);
+        const cloneIncomeItem = incomeItems[0].cloneNode(true);
         incomeItems[0].parentNode.insertBefore(cloneIncomeItem, incomeAdd);
         const input = cloneIncomeItem.querySelectorAll('input');
         input.forEach((item) => {
@@ -168,8 +168,8 @@ class AppData {
 
     getIncome() {
         incomeItems.forEach((item) => {
-            let incomeTitle = item.querySelector('.income-title').value;
-            let incomeAmount = item.querySelector('.income-amount').value;
+            const incomeTitle = item.querySelector('.income-title').value;
+            const incomeAmount = item.querySelector('.income-amount').value;
             if (incomeTitle !== '' && incomeAmount !== '') {
                 this.income[incomeTitle] = +incomeAmount;
             }
@@ -180,7 +180,7 @@ class AppData {
     };
 
     getAddExpenses() {
-        let addExpenses = additionalExpensesItem.value.split(',');
+        const addExpenses = additionalExpensesItem.value.split(',');
         addExpenses.forEach((item) => {
             item = item.trim();
             if (item !== '') {
@@ -191,7 +191,7 @@ class AppData {
 
     getAddIncome() {
         additionalIncomeItem.forEach((item) => {
-            let itemValue = item.value.trim();
+            const itemValue = item.value.trim();
             if (item.value !== '') {
                 this.addIncome.push(itemValue);
             }
@@ -295,10 +295,10 @@ class AppData {
         periodSelect.addEventListener('input', getPeriod);
         salaryAmount.addEventListener('input', success);
 
-        let inputTitle = document.querySelectorAll('input[placeholder="Наименование"]');
+        const inputTitle = document.querySelectorAll('input[placeholder="Наименование"]');
         inputTitle.forEach(input => this.textValidate(input));
 
-        let inputSum = document.querySelectorAll('input[placeholder="Сумма"]');
+        const inputSum = document.querySelectorAll('input[placeholder="Сумма"]');
         inputSum.forEach(input => this.numberValidate(input));
     }
 }
