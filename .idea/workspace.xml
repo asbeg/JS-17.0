@@ -55,10 +55,15 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../youDontKnowJS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/script" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\begai\WebstormProjects\JS-17.0\script" />
+    </key>
   </component>
   <component name="RunAnythingContextRecentDirectoryCache">
     <option name="paths">
@@ -143,10 +148,10 @@
     </state>
     <state x="60" y="212" key="Vcs.Push.Dialog.v2/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1612891169409" />
     <state x="1672" y="256" key="Vcs.Push.Dialog.v2/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1611933189004" />
-    <state x="-62" y="-13" width="1392" height="783" key="dock-window-1" timestamp="1613517079391">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="1600" y="0" width="1372" height="1047" maximized="true" key="dock-window-1" timestamp="1613671245529">
+      <screen x="1600" y="0" width="1920" height="1040" />
     </state>
-    <state x="1746" y="-11" width="1670" height="947" maximized="true" key="dock-window-1/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1613509728765" />
+    <state x="1600" y="0" width="1372" height="1047" maximized="true" key="dock-window-1/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1613671245529" />
     <state x="-62" y="-13" width="1392" height="783" key="dock-window-1/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1613517079391" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1612891587776">
       <screen x="0" y="0" width="1600" height="860" />
