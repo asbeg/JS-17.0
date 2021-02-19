@@ -71,6 +71,7 @@ class AppData {
             item.disabled = disabled;
         });
         document.querySelector('#deposit-check').disabled = disabled;
+        document.querySelector(".deposit-bank").disabled = disabled;
     };
 
     reset() {
@@ -87,6 +88,7 @@ class AppData {
         periodSelect.value = document.querySelector('.period-amount').textContent = 1;
         cancelBtn.style.display = 'none';
         startBtn.style.display = 'block';
+        depositPercent.style.display = 'none';
         depositCheck.checked = false;
         this.addExpenses = [];
         this.addIncome = [];
@@ -280,7 +282,6 @@ class AppData {
         const valueSelect = this.value;
         if (valueSelect === 'other') {
             depositPercent.style.display = 'inline-block';
-            console.log('other');
             depositPercent.value = document.querySelector('.deposit-percent').value;
             console.log(depositPercent.value);
         } else {
