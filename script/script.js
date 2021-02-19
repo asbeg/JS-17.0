@@ -280,13 +280,12 @@ class AppData {
 
     changePercent() {
         const valueSelect = this.value;
-        if (valueSelect === 'other') {
-            depositPercent.style.display = 'inline-block';
-            depositPercent.value = document.querySelector('.deposit-percent').value;
-            console.log(depositPercent.value);
-        } else {
-            depositPercent.value = valueSelect;
-        }
+            if (valueSelect === 'other') {
+                depositPercent.style.display = 'inline-block';
+            } else {
+                depositPercent.style.display = 'none';
+                depositPercent.value = valueSelect;
+            }
     };
 
     checkPercent() {
@@ -297,7 +296,7 @@ class AppData {
             const condition = /^[\d.]+$/;
             let valid = true;
             if (target.placeholder === 'Процент') {
-                valid = (+target.value.trim() > 0) && (+target.value.trim() < 100);
+                valid = (+target.value.trim() > 0) && (+target.value.trim() < 101);
             }
             if (!condition.test(target.value.trim()) && target.value.trim() || !valid) {
                 alert('Введите корректное значение в поле проценты! (число от 1 до 100)');
