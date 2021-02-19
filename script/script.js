@@ -43,9 +43,7 @@ class AppData {
         this.expensesMonth = 0;
         this.income = {};
         this.incomeMonth = 0;
-        this.mission = 0;
         this.moneyDeposit = 0;
-        this.period = 0;
         this.percentDeposit = 0;
     };
 
@@ -100,10 +98,9 @@ class AppData {
         this.expensesMonth = 0;
         this.income = {};
         this.incomeMonth = 0;
-        this.mission = 0;
         this.moneyDeposit = 0;
-        this.period = 0;
         this.percentDeposit = 0;
+        this.depositHandler();
         this.success();
     };
 
@@ -226,7 +223,6 @@ class AppData {
             return missionMonth;
     };
 
-
     /*    getStatusIncome () {
         if (this.budgetDay >= 1200) {
             return ('У вас высокий уровень дохода');
@@ -278,12 +274,10 @@ class AppData {
             this.percentDeposit = depositPercent.value; //prozent
             this.moneyDeposit = depositAmount.value; // summa
         }
-        return this.percentDeposit, this.moneyDeposit;
     };
 
     changePercent() {
         const valueSelect = this.value;
-        // const percentDeposit = document.querySelector('.deposit-percent').value;
         if (valueSelect === 'other') {
             depositPercent.style.display = 'inline-block';
             console.log('other');
@@ -292,7 +286,6 @@ class AppData {
         } else {
             depositPercent.value = valueSelect;
         }
-        console.log(this.percentDeposit);
     };
 
     checkPercent() {
@@ -300,8 +293,8 @@ class AppData {
         let value = target.value.trim();
 
         const checkValue = () => {
-            let condition = /^[\d.]+$/,
-                valid = true;
+            const condition = /^[\d.]+$/;
+            let valid = true;
             if (target.placeholder === 'Процент') {
                 valid = (+target.value.trim() > 0) && (+target.value.trim() < 100);
             }
@@ -312,7 +305,6 @@ class AppData {
             target.removeEventListener('change', checkValue);
         };
         target.addEventListener('change', checkValue);
-
     };
 
     depositHandler() {
