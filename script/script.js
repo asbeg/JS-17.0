@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', function () {
             timerSeconds = document.querySelector('#timer-seconds'),
             idInterval;
 
-            // вычисляет дату до дедлайна
+        // вычисляет дату до дедлайна
         function getTimeRemaining() {
             let dateStop = new Date(deadline).getTime(),
                 dateNow = new Date().getTime(),
@@ -22,12 +22,12 @@ window.addEventListener('DOMContentLoaded', function () {
             return {timeRemaining, hours, minutes, seconds};
         }
 
+        function addZero(n) {
+            return (n > 0 && n < 10) ? '0' + n : n;
+        }
+
         function updateClock() {
             let time = getTimeRemaining();
-
-            function addZero(n) {
-                return (n > 0 && n < 10) ? '0' + n : n;
-            }
 
             timerHours.textContent = addZero(time.hours);
             timerMinutes.textContent = addZero(time.minutes);
