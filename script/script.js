@@ -8,9 +8,8 @@ window.addEventListener('DOMContentLoaded', function () {
             timerSeconds = document.querySelector('#timer-seconds'),
             idInterval;
 
-
-        function getTimeRemaining() {
             // вычисляет дату до дедлайна
+        function getTimeRemaining() {
             let dateStop = new Date(deadline).getTime(),
                 dateNow = new Date().getTime(),
                 timeRemaining = (dateStop - dateNow) / 1000,
@@ -19,11 +18,16 @@ window.addEventListener('DOMContentLoaded', function () {
                 hours = Math.floor(timeRemaining / 60 / 60);
             //  day = Math.floor(timeRemaining / 60 / 60 / 24);
 
+
             return {timeRemaining, hours, minutes, seconds};
         }
 
         function updateClock() {
             let time = getTimeRemaining();
+
+            function addZero(n) {
+                return (n > 0 && n < 10) ? '0' + n : n;
+            }
 
             timerHours.textContent = addZero(time.hours);
             timerMinutes.textContent = addZero(time.minutes);
@@ -36,12 +40,10 @@ window.addEventListener('DOMContentLoaded', function () {
                 timerSeconds.textContent = '00';
             }
         }
-            idInterval = setInterval(updateClock, 1000);
+
+        idInterval = setInterval(updateClock, 1000);
     }
 
-    countTimer('24 February 2019');
+    countTimer('24 February 2021');
 });
 
-function addZero(n) {
-    return (n > 0 && n < 10) ? '0' + n : n;
-}
