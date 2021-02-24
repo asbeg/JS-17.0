@@ -63,6 +63,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="456" y="195" key="run.anything.popup" timestamp="1614082057726">
