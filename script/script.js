@@ -48,24 +48,25 @@ window.addEventListener('DOMContentLoaded', function () {
 
     //меню
     const toggleMenu = () => {
-        const btnMenu = document.querySelector('.menu'),
-            menu = document.querySelector('menu');
-
         const handlerMenu = () => {
             const target = event.target;
-            if (target.closest('.menu')) {
-                menu.classList.toggle('active-menu');
-            } else if (target !== menu && target.closest('ul>li>a')) {
-                console.log(target.closest('ul>li>a'));
-                menu.classList.toggle('active-menu');
+            console.log(target);
+            const displayMenu = () => {
+                document.querySelector('menu').classList.toggle('active-menu');
+            };
+
+            if (target.closest('.menu') ||
+                (!target.closest('menu') &&
+                    document.querySelector('menu').classList.contains('active-menu'))) {
+                displayMenu();
+            } else if (target.closest('menu') && target.closest('[href^="#"]')) {
+                displayMenu();
             }
-        }
-
-        btnMenu.addEventListener('click', handlerMenu);
-        menu.addEventListener('click', handlerMenu);
+        };
+        document.body.addEventListener('click', handlerMenu);
     };
-    toggleMenu();
 
+    toggleMenu();
 
     //popup okno(оставить заявку)
     /*    const togglePopup = () =>{
