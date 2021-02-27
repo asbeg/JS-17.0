@@ -88,9 +88,9 @@ window.addEventListener('DOMContentLoaded', function () {
             popupClose = document.querySelector('.popup-close'),
             popupContent = document.querySelector('.popup-content'),
             popupData = {
-                count: 200,
+                count: 50,
                 speed: 3,
-                startPos: 200,
+                startPos: 400,
                 endPos: 0
             };
 
@@ -101,9 +101,11 @@ window.addEventListener('DOMContentLoaded', function () {
                 popupData.count += popupData.speed;
             popupContent.style.transform = `translateY(${popupData.count}px)`;
 
-            if (popupData.startPos > popupData.endPos ?
+            let condition = popupData.startPos > popupData.endPos ?
                 popupData.count > popupData.endPos :
-                popupData.count < popupData.endPos) {
+                popupData.count < popupData.endPos;
+
+            if (condition) {
                 requestAnimationFrame(showPopup);
             }
         };
