@@ -50,7 +50,7 @@
       <workItem from="1614081009879" duration="5493000" />
       <workItem from="1614269263343" duration="7917000" />
       <workItem from="1614437235969" duration="2327000" />
-      <workItem from="1614453193968" duration="369000" />
+      <workItem from="1614453193968" duration="3532000" />
     </task>
     <servers />
   </component>
@@ -70,9 +70,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2061" y="165" key="SettingsEditor" timestamp="1614190035523">
-      <screen x="1600" y="0" width="1920" height="1040" />
+    <state x="384" y="136" key="SettingsEditor" timestamp="1614455555330">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
+    <state x="384" y="136" key="SettingsEditor/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1614455555330" />
     <state x="2061" y="165" key="SettingsEditor/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1614190035523" />
     <state x="50" y="0" width="1502" height="947" maximized="true" key="dock-window-1" timestamp="1614272065029">
       <screen x="0" y="0" width="1600" height="860" />
