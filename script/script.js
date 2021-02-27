@@ -105,9 +105,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 popupData.count > popupData.endPos :
                 popupData.count < popupData.endPos;
 
-            if (condition) {
-                requestAnimationFrame(showPopup);
-            }
+            if (condition) requestAnimationFrame(showPopup);
         };
 
         popupBtn.forEach(elem => {
