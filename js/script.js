@@ -20,7 +20,6 @@ class ToDo {
         this.addToStorage();
     }
 
-
     createItem = (todo) => {
         const li = document.createElement('li');
         li.classList.add('todo-item');
@@ -48,6 +47,7 @@ class ToDo {
                 key: this.generateKey()
             }
             this.todoData.set(newTodo.key, newTodo);
+            this.input.value = '';
             this.render();
         } else {
             alert('пустое дело добавить нельзя!');
