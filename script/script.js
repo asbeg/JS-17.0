@@ -65,23 +65,6 @@ window.addEventListener('DOMContentLoaded', function () {
     };
     toggleMenu();
 
-
-    //popup okno(оставить заявку)
-    /*    const togglePopup = () =>{
-            const popup = document.querySelector('.popup'),
-                popupBtn = document.querySelectorAll('.popup-btn'),
-            popupClose=document.querySelector('.popup-close');
-
-            popupBtn.forEach((elem) =>{
-               elem.addEventListener('click', () =>{
-                 popup.style.display = 'block';
-               });
-
-                popupClose.addEventListener('click', ()=>{
-                    popup.style.display = 'none';
-                });
-            });
-        };togglePopup();*/
     const animatedTogglePopUp = () => {
         const popup = document.querySelector('.popup'),
             popupBtn = document.querySelectorAll('.popup-btn'),

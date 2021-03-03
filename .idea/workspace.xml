@@ -34,7 +34,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ToDoOOP" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -47,6 +47,15 @@
       <option name="presentableId" value="Default" />
       <updated>1614081008596</updated>
       <workItem from="1614081009879" duration="5493000" />
+<<<<<<< Updated upstream
+=======
+      <workItem from="1614269263343" duration="7917000" />
+      <workItem from="1614437235969" duration="2327000" />
+      <workItem from="1614453193968" duration="5857000" />
+      <workItem from="1614507742288" duration="2566000" />
+      <workItem from="1614512550527" duration="61000" />
+      <workItem from="1614519072437" duration="1703000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
@@ -66,6 +75,22 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+<<<<<<< Updated upstream
+=======
+    <state x="580" y="185" key="FileChooserDialogImpl" timestamp="1614512453275">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="580" y="185" key="FileChooserDialogImpl/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1614512453275" />
+    <state x="384" y="136" key="SettingsEditor" timestamp="1614455555330">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="384" y="136" key="SettingsEditor/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1614455555330" />
+    <state x="2061" y="165" key="SettingsEditor/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1614190035523" />
+    <state x="50" y="0" width="1502" height="947" maximized="true" key="dock-window-1" timestamp="1614272065029">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="50" y="0" width="1502" height="947" maximized="true" key="dock-window-1/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1614272065029" />
+>>>>>>> Stashed changes
     <state x="456" y="195" key="run.anything.popup" timestamp="1614082057726">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
