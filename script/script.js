@@ -16,8 +16,6 @@ window.addEventListener('DOMContentLoaded', function () {
                 seconds = Math.floor(timeRemaining % 60),
                 minutes = Math.floor((timeRemaining / 60) % 60),
                 hours = Math.floor(timeRemaining / 60 / 60);
-            //  day = Math.floor(timeRemaining / 60 / 60 / 24);
-
 
             return {timeRemaining, hours, minutes, seconds};
         }
@@ -28,7 +26,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
         function updateClock() {
             let time = getTimeRemaining();
-
             timerHours.textContent = addZero(time.hours);
             timerMinutes.textContent = addZero(time.minutes);
             timerSeconds.textContent = addZero(time.seconds);
@@ -58,30 +55,11 @@ window.addEventListener('DOMContentLoaded', function () {
         }
 
         btnMenu.addEventListener('click', handlerMenu);
-
         closeBtn.addEventListener('click', handlerMenu);
-
         menuItems.forEach((elem) => elem.addEventListener('click', handlerMenu));
     };
     toggleMenu();
 
-
-    //popup okno(оставить заявку)
-    /*    const togglePopup = () =>{
-            const popup = document.querySelector('.popup'),
-                popupBtn = document.querySelectorAll('.popup-btn'),
-            popupClose=document.querySelector('.popup-close');
-
-            popupBtn.forEach((elem) =>{
-               elem.addEventListener('click', () =>{
-                 popup.style.display = 'block';
-               });
-
-                popupClose.addEventListener('click', ()=>{
-                    popup.style.display = 'none';
-                });
-            });
-        };togglePopup();*/
     const animatedTogglePopUp = () => {
         const popup = document.querySelector('.popup'),
             popupBtn = document.querySelectorAll('.popup-btn'),
@@ -124,5 +102,99 @@ window.addEventListener('DOMContentLoaded', function () {
     };
 
     animatedTogglePopUp();
-});
 
+    const changeImg = () => {
+        const command = document.querySelector('.command');
+        const change = (event) => {
+            const target = event.target;
+            if (target.classList.contains('command__photo')) {
+                const prevSrc = target.src;
+                target.src = target.dataset.img;
+                target.dataset.img = prevSrc;
+            }
+
+        };
+        command.addEventListener('mouseover', change);
+        command.addEventListener('mouseout', change);
+    };
+
+    changeImg();
+
+    const checkCalcInput = () => {
+        const calcBlock = document.querySelector('.calc-block');
+        calcBlock.addEventListener('input', (event) => {
+            const target = event.target;
+            target.value = target.value.replace(/\D/g, '');
+        });
+    };
+
+    checkCalcInput();
+
+    function blockInput() {
+        document.addEventListener('input', (event) => {
+            const target = event.target;
+            if (target.name === 'user_name') {
+                return target.value = target.value.replace(/[^а-яё -]/gi, '');
+            }
+            if (target.matches('.form-phone')) {
+                return target.value = target.value.replace(/[^\d()\-]$/g, '');
+            }
+            if (target.matches('.mess')) {
+                return target.value = target.value.replace(/[^а-яё -]/gi, '');
+            }
+            if (target.classList.contains('form-email')) {
+                return target.value = target.value.replace(/[^_@.!'~*A-Za-z\-]/g, '');
+            }
+        });
+    }
+
+    blockInput();
+
+    const blockInputValid = () => {
+        function toUppercase(str) {
+            return str.replace(/(^|\s)\S/g, function (st) {
+                return st.toUpperCase()
+            });
+        }
+
+        const input = document.querySelectorAll('input');
+
+        function valid(event) {
+
+            input.forEach(function () {
+
+                const target = event.target;
+
+                if (target.name === 'user_name' || target.name === '.mess') {
+                    target.value = target.value.replace(/[^а-яё -]/gi, '');
+                    target.value = target.value.replace(/\s+/g, ' ');
+                    target.value = target.value.replace(/\-+/g, '-');
+                    target.value = target.value.replace(/\-+/g, '-');
+                    let newStr = toUppercase(target.value).trim();
+                    return target.value = newStr;
+                }
+
+                if (target.matches('.form-phone')) {
+                    target.value = target.value.replace(/[^()0-9\-]/g, '')
+                    target.value = target.value.replace(/\-+/g, '-')
+                    target.value = target.value.replace(/\s+/g, ' ')
+                    target.value = target.value.replace(/^-+|-+$/, '')
+                    return target.value.trim();
+                }
+
+                if (target.classList.contains('.form-email')) {
+                    target.value = target.value.replace(/[^_@.!~*A-Za-z\-]/g, '')
+                    target.value = target.value.replace(/\s+/g, ' ')
+                    target.value = target.value.replace(/\-+/g, '-')
+                    target.value = target.value.replace(/^-+|-+$/, '')
+                    return target.value.trim();
+                }
+            });
+        }
+
+        document.addEventListener('blur', valid, true);
+    }
+    blockInputValid();
+
+
+});
