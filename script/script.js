@@ -257,8 +257,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 let total = 0,
                     countValue = 1,
                     dayValue = 1,
-                    time = 5000,
-                    step = 1000;
+                    step = total / 100 * 10;
                 const typeValue = calcType.options[calcType.selectedIndex].value,
                     squareValue = +calcSquare.value;
                 if (calcCount.value > 1) {
@@ -274,24 +273,20 @@ window.addEventListener('DOMContentLoaded', function () {
                 if (typeValue && squareValue) {
                     total = price * typeValue * squareValue * countValue * dayValue;
                 }
+
                 if (+totalValue.textContent !== total) {
                     if (totalValue.textContent > total) {
                         step = -1;
                     }
 
-                    function timer(num) {
-                        let n = 0;
-                        let t = Math.round(time / (num / step));
-                        let interval = setInterval(() => {
-                            n = n + step;
-                            if (n === num) {
-                                clearInterval(interval);
-                            }
-                            totalValue.textContent = n;
-                        }, t);
-                    }
-
-                    timer(total);
+                    const timer = setInterval(() => {
+                        totalValue.textContent = +totalValue.textContent + step;
+                        if ((total - totalValue.textContent) * step < 1) {
+                            clearInterval(timer);
+                            totalValue.textContent = Math.round(total);
+                        }
+                    }, 0);
+                    // totalValue.textContent = total;
                 }
             }
             calcBlock.addEventListener('change', (event) => {
@@ -304,5 +299,3 @@ window.addEventListener('DOMContentLoaded', function () {
         calc(100);
     }
 );
-
-
