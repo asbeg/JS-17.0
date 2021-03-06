@@ -241,6 +241,33 @@ window.addEventListener('DOMContentLoaded', function () {
     addDot();
     slider();
 
+    const changeImg = () => {
+        const command = document.querySelector('.command');
+        const change = (event) => {
+            const target = event.target;
+            if (target.classList.contains('command__photo')) {
+                const prevSrc = target.src;
+                target.src = target.dataset.img;
+                target.dataset.img = prevSrc;
+            }
+
+        };
+        command.addEventListener('mouseover', change);
+        command.addEventListener('mouseout', change);
+    };
+
+    changeImg();
+
+    /*    const checkCalcInput = () => {
+            const calcBlock = document.querySelector('.calc-block');
+            calcBlock.addEventListener('input', (event) => {
+                const target = event.target;
+                if(target === )
+                target.value = target.value.replace(/\D/g, '');
+            });
+        };
+        checkCalcInput();*/
+
     function blockInput() {
         document.addEventListener('input', (event) => {
             const target = event.target;
@@ -339,33 +366,25 @@ window.addEventListener('DOMContentLoaded', function () {
                 total = price * typeValue * squareValue * counrValue * dayValue;
             }
 
-            if (+totalValue.textContent !== total) {
-                if (totalValue.textContent > total) {
-                    return;
-                }
-                timer();
-            }
+            //  totalValue.textContent = total;
 
             function timer() {
-                let step = 0;
-                const animationDuration = 2000;
-                const stepDuration = 1000 / 60;
-                const totalStep = Math.round(animationDuration / stepDuration);
-
-                const counter = setInterval(() => {
-                    step++;
-
-                    const currentCount = Math.round(total * (step / (animationDuration / stepDuration)));
-
-                    if (parseInt(total) !== currentCount) {
-                        totalValue.textContent = currentCount;
-                    }
-
-                    if (step === totalStep) {
-                        clearInterval(counter);
-                    }
-                }, stepDuration);
+                let step = (total / 100) * 10;
+                const time = 2000;
+                let n = 0;
+                let t = Math.round(time / (total / step));
+                if (+totalValue.textContent !== total) {
+                    let interval = setInterval(() => {
+                        n += step;
+                        if (n === total) {
+                            clearInterval(interval);
+                        }
+                        totalValue.textContent = n;
+                    }, t);
+                }
             }
+
+            timer();
         }
 
         calcBlock.addEventListener('change', event => {
