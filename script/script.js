@@ -369,20 +369,18 @@ window.addEventListener('DOMContentLoaded', function () {
             }
 
             //  totalValue.textContent = total;
-
+            //анимация суммы - total
             function timer() {
                 let step = (total / 100) * 10;
-                const time = 2000;
                 let n = 0;
-                let t = Math.round(time / (total / step));
                 if (+totalValue.textContent !== total) {
                     let interval = setInterval(() => {
                         n += step;
                         if (n === total) {
                             clearInterval(interval);
                         }
-                        totalValue.textContent = n;
-                    }, t);
+                        totalValue.textContent = parseInt(n);
+                    }, 0.05);
                 }
             }
 
