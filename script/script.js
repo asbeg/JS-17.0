@@ -258,15 +258,17 @@ window.addEventListener('DOMContentLoaded', function () {
 
     changeImg();
 
-    /*    const checkCalcInput = () => {
-            const calcBlock = document.querySelector('.calc-block');
-            calcBlock.addEventListener('input', (event) => {
-                const target = event.target;
-                if(target === )
-                target.value = target.value.replace(/\D/g, '');
-            });
-        };
-        checkCalcInput();*/
+    const checkCalcInput = () => {
+        const calcBlock = document.querySelector('.calc-block');
+        calcBlock.addEventListener('input', (event) => {
+            const target = event.target;
+            if (target.matches('.calc-square') || target.matches('.calc-count') ||
+                target.matches('.calc-day')) {
+                target.value = target.value.replace(/[^0-9]/g, '');
+            }
+        });
+    };
+    checkCalcInput();
 
     function blockInput() {
         document.addEventListener('input', (event) => {
@@ -345,13 +347,13 @@ window.addEventListener('DOMContentLoaded', function () {
 
         const countSum = () => {
             let total = 0,
-                counrValue = 1,
+                countValue = 1,
                 dayValue = 10;
             const typeValue = calcType.options[calcType.selectedIndex].value,
                 squareValue = +calcSquary.value;
 
             if (calcCount.value > 1) {
-                counrValue += (calcCount.value - 1) / 10;
+                countValue += (calcCount.value - 1) / 10;
             }
 
             if (calcDay.value) {
@@ -363,7 +365,7 @@ window.addEventListener('DOMContentLoaded', function () {
             }
 
             if (!!typeValue && !!squareValue) {
-                total = price * typeValue * squareValue * counrValue * dayValue;
+                total = price * typeValue * squareValue * countValue * dayValue;
             }
 
             //  totalValue.textContent = total;
