@@ -380,10 +380,9 @@ window.addEventListener('DOMContentLoaded', function () {
                             clearInterval(interval);
                         }
                         totalValue.textContent = parseInt(n);
-                    }, 0.05);
+                    }, 50);
                 }
             }
-
             timer();
         }
 
@@ -398,5 +397,3 @@ window.addEventListener('DOMContentLoaded', function () {
 
     calc(100);
 });
-
-
