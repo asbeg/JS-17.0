@@ -1,473 +1,518 @@
 //ждет загрузки только дом дерева, не всей стр.
 window.addEventListener('DOMContentLoaded', function () {
-    'use strict';
+        'use strict';
 
-    function countTimer(deadline) {
-        let timerHours = document.querySelector('#timer-hours'),
-            timerMinutes = document.querySelector('#timer-minutes'),
-            timerSeconds = document.querySelector('#timer-seconds'),
-            idInterval;
+        function countTimer(deadline) {
+            let timerHours = document.querySelector('#timer-hours'),
+                timerMinutes = document.querySelector('#timer-minutes'),
+                timerSeconds = document.querySelector('#timer-seconds'),
+                idInterval;
 
-        // вычисляет дату до дедлайна
-        function getTimeRemaining() {
-            let dateStop = new Date(deadline).getTime(),
-                dateNow = new Date().getTime(),
-                timeRemaining = (dateStop - dateNow) / 1000,
-                seconds = Math.floor(timeRemaining % 60),
-                minutes = Math.floor((timeRemaining / 60) % 60),
-                hours = Math.floor(timeRemaining / 60 / 60);
+            // вычисляет дату до дедлайна
+            function getTimeRemaining() {
+                let dateStop = new Date(deadline).getTime(),
+                    dateNow = new Date().getTime(),
+                    timeRemaining = (dateStop - dateNow) / 1000,
+                    seconds = Math.floor(timeRemaining % 60),
+                    minutes = Math.floor((timeRemaining / 60) % 60),
+                    hours = Math.floor(timeRemaining / 60 / 60);
 
-            return {timeRemaining, hours, minutes, seconds};
-        }
-
-        function addZero(n) {
-            return (n > 0 && n < 10) ? '0' + n : n;
-        }
-
-        function updateClock() {
-            let time = getTimeRemaining();
-
-            timerHours.textContent = addZero(time.hours);
-            timerMinutes.textContent = addZero(time.minutes);
-            timerSeconds.textContent = addZero(time.seconds);
-
-            if (time.timeRemaining < 0) {
-                clearInterval(idInterval);
-                timerHours.textContent = '00';
-                timerMinutes.textContent = '00';
-                timerSeconds.textContent = '00';
+                return {timeRemaining, hours, minutes, seconds};
             }
-        }
 
-        idInterval = setInterval(updateClock, 1000);
-    };
+            function addZero(n) {
+                return (n > 0 && n < 10) ? '0' + n : n;
+            }
 
-    countTimer('24 February 2021');
+            function updateClock() {
+                let time = getTimeRemaining();
 
-    //меню
-    const toggleMenu = () => {
-        const handlerMenu = (event) => {
-            const target = event.target;
-            const displayMenu = () => {
-                document.querySelector('menu').classList.toggle('active-menu');
+                timerHours.textContent = addZero(time.hours);
+                timerMinutes.textContent = addZero(time.minutes);
+                timerSeconds.textContent = addZero(time.seconds);
+
+                if (time.timeRemaining < 0) {
+                    clearInterval(idInterval);
+                    timerHours.textContent = '00';
+                    timerMinutes.textContent = '00';
+                    timerSeconds.textContent = '00';
+                }
+            }
+
+            idInterval = setInterval(updateClock, 1000);
+        };
+
+        countTimer('24 February 2021');
+
+        //меню
+        const toggleMenu = () => {
+            const handlerMenu = (event) => {
+                const target = event.target;
+                const displayMenu = () => {
+                    document.querySelector('menu').classList.toggle('active-menu');
+                };
+
+                if (target.closest('.menu') ||
+                    (!target.closest('menu') &&
+                        document.querySelector('menu').classList.contains('active-menu'))) {
+                    displayMenu();
+                } else if (target.closest('menu') && target.closest('[href^="#"]')) {
+                    displayMenu();
+                }
+            };
+            document.body.addEventListener('click', handlerMenu);
+        };
+
+        toggleMenu();
+
+        //popup okno(оставить заявку)
+        const animatedTogglePopUp = () => {
+            const popup = document.querySelector('.popup'),
+                popupBtn = document.querySelectorAll('.popup-btn'),
+                popupContent = document.querySelector('.popup-content'),
+                popupData = {
+                    count: 50,
+                    speed: 5,
+                    startPos: 200,
+                    endPos: 0
+                };
+
+            const showPopup = () => {
+
+                popupData.startPos > popupData.endPos ?
+                    popupData.count -= popupData.speed :
+                    popupData.count += popupData.speed;
+                popupContent.style.transform = `translateY(${popupData.count}px)`;
+
+                let condition = popupData.startPos > popupData.endPos ?
+                    popupData.count > popupData.endPos :
+                    popupData.count < popupData.endPos;
+
+                if (condition) requestAnimationFrame(showPopup);
             };
 
-            if (target.closest('.menu') ||
-                (!target.closest('menu') &&
-                    document.querySelector('menu').classList.contains('active-menu'))) {
-                displayMenu();
-            } else if (target.closest('menu') && target.closest('[href^="#"]')) {
-                displayMenu();
-            }
-        };
-        document.body.addEventListener('click', handlerMenu);
-    };
-
-    toggleMenu();
-
-    //popup okno(оставить заявку)
-    const animatedTogglePopUp = () => {
-        const popup = document.querySelector('.popup'),
-            popupBtn = document.querySelectorAll('.popup-btn'),
-            popupContent = document.querySelector('.popup-content'),
-            popupData = {
-                count: 50,
-                speed: 5,
-                startPos: 200,
-                endPos: 0
-            };
-
-        const showPopup = () => {
-
-            popupData.startPos > popupData.endPos ?
-                popupData.count -= popupData.speed :
-                popupData.count += popupData.speed;
-            popupContent.style.transform = `translateY(${popupData.count}px)`;
-
-            let condition = popupData.startPos > popupData.endPos ?
-                popupData.count > popupData.endPos :
-                popupData.count < popupData.endPos;
-
-            if (condition) requestAnimationFrame(showPopup);
-        };
-
-        popupBtn.forEach(elem => {
-            elem.addEventListener('click', () => {
-                popup.style.display = 'block';
-                if (screen.width > 768) {
-                    popupData.count = popupData.startPos;
-                    requestAnimationFrame(showPopup);
-                }
-            });
-        });
-
-        popup.addEventListener('click', (event) => {
-            let target = event.target;
-            if (target.classList.contains('popup-close')) {
-                popup.style.display = 'none';
-            } else {
-                target = target.closest('.popup-content');
-                if (!target) {
-                    popup.style.display = 'none';
-                }
-            }
-        });
-    };
-    animatedTogglePopUp();
-
-    //табы
-    const tabs = () => {
-        const tabHeader = document.querySelector('.service-header'),
-            tab = tabHeader.querySelectorAll('.service-header-tab'),
-            tabContent = document.querySelectorAll('.service-tab');
-
-        const toggleTabContent = (index) => {
-            for (let i = 0; i < tabContent.length; i++) {
-                if (index === i) {
-                    tab[i].classList.add('active');
-                    tabContent[i].classList.remove('d-none');
-                } else {
-                    tab[i].classList.remove('active');
-                    tabContent[i].classList.add('d-none');
-                }
-            }
-        };
-
-        tabHeader.addEventListener('click', (event) => {
-            let target = event.target;
-            target = target.closest('.service-header-tab');
-            if (target) {
-                tab.forEach((item, i) => {
-                    if (item === target) {
-                        toggleTabContent(i);
+            popupBtn.forEach(elem => {
+                elem.addEventListener('click', () => {
+                    popup.style.display = 'block';
+                    if (screen.width > 768) {
+                        popupData.count = popupData.startPos;
+                        requestAnimationFrame(showPopup);
                     }
                 });
-            }
-        });
-    };
+            });
 
-    tabs();
-
-    //слайдер
-    const slider = () => {
-        const slide = document.querySelectorAll('.portfolio-item'),
-            dot = document.querySelectorAll('.dot'),
-            slider = document.querySelector('.portfolio-content');
-
-        let currentSlide = 0,
-            interval;
-
-        const prevSlide = (elem, index, strClass) => {
-            elem[index].classList.remove(strClass);
+            popup.addEventListener('click', (event) => {
+                let target = event.target;
+                if (target.classList.contains('popup-close')) {
+                    popup.style.display = 'none';
+                } else {
+                    target = target.closest('.popup-content');
+                    if (!target) {
+                        popup.style.display = 'none';
+                    }
+                }
+            });
         };
+        animatedTogglePopUp();
 
-        const nextSlide = (elem, index, strClass) => {
-            elem[index].classList.add(strClass);
-        };
+        //табы
+        const tabs = () => {
+            const tabHeader = document.querySelector('.service-header'),
+                tab = tabHeader.querySelectorAll('.service-header-tab'),
+                tabContent = document.querySelectorAll('.service-tab');
 
-        const autoPlaySlide = () => {
-            prevSlide(slide, currentSlide, 'portfolio-item-active');
-            prevSlide(dot, currentSlide, 'dot-active');
-            currentSlide = currentSlide < slide.length - 1 ? currentSlide + 1 : 0;
-            nextSlide(slide, currentSlide, 'portfolio-item-active');
-            nextSlide(dot, currentSlide, 'dot-active');
-        };
+            const toggleTabContent = (index) => {
+                for (let i = 0; i < tabContent.length; i++) {
+                    if (index === i) {
+                        tab[i].classList.add('active');
+                        tabContent[i].classList.remove('d-none');
+                    } else {
+                        tab[i].classList.remove('active');
+                        tabContent[i].classList.add('d-none');
+                    }
+                }
+            };
 
-        const startSlide = (time = 2000) => {
-            interval = setInterval(autoPlaySlide, time);
-        };
-
-        const stopSlide = () => {
-            clearInterval(interval);
-        };
-
-        slider.addEventListener('click', event => {
-            event.preventDefault();
-
-            const target = event.target;
-
-            if (target.matches('.portfolio-btn, .dot')) {
-                prevSlide(slide, currentSlide, 'portfolio-item-active');
-                prevSlide(dot, currentSlide, 'dot-active');
-
-                if (target.matches('#arrow-right')) {
-                    currentSlide++;
-                } else if (target.matches('#arrow-left')) {
-                    currentSlide--;
-                } else if (target.matches('.dot')) {
-                    dot.forEach((elem, index) => {
-                        if (elem === target) {
-                            currentSlide = index;
+            tabHeader.addEventListener('click', (event) => {
+                let target = event.target;
+                target = target.closest('.service-header-tab');
+                if (target) {
+                    tab.forEach((item, i) => {
+                        if (item === target) {
+                            toggleTabContent(i);
                         }
                     });
                 }
+            });
+        };
 
-                if (currentSlide >= slide.length) currentSlide = 0;
-                if (currentSlide < 0) currentSlide = slide.length - 1;
+        tabs();
 
+        //слайдер
+        const slider = () => {
+            const slide = document.querySelectorAll('.portfolio-item'),
+                dot = document.querySelectorAll('.dot'),
+                slider = document.querySelector('.portfolio-content');
+
+            let currentSlide = 0,
+                interval;
+
+            const prevSlide = (elem, index, strClass) => {
+                elem[index].classList.remove(strClass);
+            };
+
+            const nextSlide = (elem, index, strClass) => {
+                elem[index].classList.add(strClass);
+            };
+
+            const autoPlaySlide = () => {
+                prevSlide(slide, currentSlide, 'portfolio-item-active');
+                prevSlide(dot, currentSlide, 'dot-active');
+                currentSlide = currentSlide < slide.length - 1 ? currentSlide + 1 : 0;
                 nextSlide(slide, currentSlide, 'portfolio-item-active');
                 nextSlide(dot, currentSlide, 'dot-active');
-            }
-        });
+            };
 
-        slider.addEventListener('mouseover', event => {
-            if (event.target.matches('.portfolio-btn') || event.target.matches('.dot')) {
-                stopSlide();
-            }
-        });
+            const startSlide = (time = 2000) => {
+                interval = setInterval(autoPlaySlide, time);
+            };
 
-        slider.addEventListener('mouseout', event => {
-            if (event.target.matches('.portfolio-btn') || event.target.matches('.dot')) {
-                startSlide();
-            }
-        });
+            const stopSlide = () => {
+                clearInterval(interval);
+            };
 
-        startSlide();
-    };
-
-    // на страницу добавлять точки с классом dot равному количеству слайдов
-    const addDot = () => {
-        const portfolioItem = document.querySelectorAll('.portfolio-item'),
-            portfolioDots = document.querySelector('.portfolio-dots');
-
-        portfolioItem.forEach(() => {
-            const dot = document.createElement('li');
-            dot.classList.add('dot');
-            portfolioDots.appendChild(dot);
-        });
-
-        portfolioDots.children[0].classList.add('dot-active');
-    };
-    addDot();
-    slider();
-
-    const changeImg = () => {
-        const command = document.querySelector('.command');
-        const change = (event) => {
-            const target = event.target;
-            if (target.classList.contains('command__photo')) {
-                const prevSrc = target.src;
-                target.src = target.dataset.img;
-                target.dataset.img = prevSrc;
-            }
-
-        };
-        command.addEventListener('mouseover', change);
-        command.addEventListener('mouseout', change);
-    };
-
-    changeImg();
-
-    const checkCalcInput = () => {
-        const calcBlock = document.querySelector('.calc-block');
-        calcBlock.addEventListener('input', (event) => {
-            const target = event.target;
-            if (target.matches('.calc-square') || target.matches('.calc-count') ||
-                target.matches('.calc-day')) {
-                target.value = target.value.replace(/[^0-9]/g, '');
-            }
-        });
-    };
-    checkCalcInput();
-
-    function blockInput() {
-        document.addEventListener('input', (event) => {
-            const target = event.target;
-            if (target.name === 'user_name') {
-                return target.value = target.value.replace(/[^а-яё ]/gi, '');
-            }
-            if (target.matches('.form-phone')) {
-                return target.value = target.value.replace(/[^+\d]/g, '');
-            }
-            if (target.matches('.mess')) {
-                return target.value = target.value.replace(/[^а-яё ,.!?\d]/gi, '');
-            }
-            if (target.classList.contains('form-email')) {
-                return target.value = target.value.replace(/[^_@.!'~*A-Za-z\-]/g, '');
-            }
-        });
-    }
-
-    blockInput();
-
-    const blockInputValid = () => {
-        function toUppercase(str) {
-            return str.replace(/(^|\s)\S/g, function (st) {
-                return st.toUpperCase()
-            });
-        }
-
-        const input = document.querySelectorAll('input');
-
-        function valid(event) {
-
-            input.forEach(function () {
+            slider.addEventListener('click', event => {
+                event.preventDefault();
 
                 const target = event.target;
 
-                if (target.name === 'user_name' || target.name === '.mess') {
-                    target.value = target.value.replace(/[^а-яё ]/gi, '');
-                    target.value = target.value.replace(/\s+/g, ' ');
-                    target.value = target.value.replace(/\-+/g, '');
-                    let newStr = toUppercase(target.value).trim();
-                    return target.value = newStr;
+                if (target.matches('.portfolio-btn, .dot')) {
+                    prevSlide(slide, currentSlide, 'portfolio-item-active');
+                    prevSlide(dot, currentSlide, 'dot-active');
+
+                    if (target.matches('#arrow-right')) {
+                        currentSlide++;
+                    } else if (target.matches('#arrow-left')) {
+                        currentSlide--;
+                    } else if (target.matches('.dot')) {
+                        dot.forEach((elem, index) => {
+                            if (elem === target) {
+                                currentSlide = index;
+                            }
+                        });
+                    }
+
+                    if (currentSlide >= slide.length) currentSlide = 0;
+                    if (currentSlide < 0) currentSlide = slide.length - 1;
+
+                    nextSlide(slide, currentSlide, 'portfolio-item-active');
+                    nextSlide(dot, currentSlide, 'dot-active');
+                }
+            });
+
+            slider.addEventListener('mouseover', event => {
+                if (event.target.matches('.portfolio-btn') || event.target.matches('.dot')) {
+                    stopSlide();
+                }
+            });
+
+            slider.addEventListener('mouseout', event => {
+                if (event.target.matches('.portfolio-btn') || event.target.matches('.dot')) {
+                    startSlide();
+                }
+            });
+
+            startSlide();
+        };
+
+        // на страницу добавлять точки с классом dot равному количеству слайдов
+        const addDot = () => {
+            const portfolioItem = document.querySelectorAll('.portfolio-item'),
+                portfolioDots = document.querySelector('.portfolio-dots');
+
+            portfolioItem.forEach(() => {
+                const dot = document.createElement('li');
+                dot.classList.add('dot');
+                portfolioDots.appendChild(dot);
+            });
+
+            portfolioDots.children[0].classList.add('dot-active');
+        };
+        addDot();
+        slider();
+
+        const changeImg = () => {
+            const command = document.querySelector('.command');
+            const change = (event) => {
+                const target = event.target;
+                if (target.classList.contains('command__photo')) {
+                    const prevSrc = target.src;
+                    target.src = target.dataset.img;
+                    target.dataset.img = prevSrc;
                 }
 
+            };
+            command.addEventListener('mouseover', change);
+            command.addEventListener('mouseout', change);
+        };
+
+        changeImg();
+
+        const checkCalcInput = () => {
+            const calcBlock = document.querySelector('.calc-block');
+            calcBlock.addEventListener('input', (event) => {
+                const target = event.target;
+                if (target.matches('.calc-square') || target.matches('.calc-count') ||
+                    target.matches('.calc-day')) {
+                    target.value = target.value.replace(/[^0-9]/g, '');
+                }
+            });
+        };
+        checkCalcInput();
+
+        function blockInput() {
+            document.addEventListener('input', (event) => {
+                const target = event.target;
+                if (target.name === 'user_name') {
+                    return target.value = target.value.replace(/[^а-яё ]/gi, '');
+                }
                 if (target.matches('.form-phone')) {
-                    target.value = target.value.replace(/[^0-9\+]/g, '')
-                    target.value = target.value.replace(/\-+/g, '-')
-                    target.value = target.value.replace(/\s+/g, ' ')
-                    target.value = target.value.replace(/^-+|-+$/, '')
-                    return target.value.trim();
+                    return target.value = target.value.replace(/[^+\d]/g, '');
                 }
-
-                if (target.classList.contains('.form-email')) {
-                    target.value = target.value.replace(/[^_@.!~*A-Za-z\-]/g, '')
-                    target.value = target.value.replace(/\s+/g, ' ')
-                    target.value = target.value.replace(/\-+/g, '-')
-                    target.value = target.value.replace(/^-+|-+$/, '')
-                    return target.value.trim();
+                if (target.matches('.mess')) {
+                    return target.value = target.value.replace(/[^а-яё ,.!?\d]/gi, '');
+                }
+                if (target.classList.contains('form-email')) {
+                    return target.value = target.value.replace(/[^_@.!'~*A-Za-z\-]/g, '');
                 }
             });
         }
 
-        document.addEventListener('blur', valid, true);
-    }
-    blockInputValid();
+        blockInput();
 
-    // калькулятор
-    const calc = (price = 100) => {
-        const calcBlock = document.querySelector('.calc-block'),
-            calcType = document.querySelector('.calc-type'),
-            calcSquary = document.querySelector('.calc-square'),
-            calcDay = document.querySelector('.calc-day'),
-            calcCount = document.querySelector('.calc-count'),
-            totalValue = document.getElementById('total');
-
-        const countSum = () => {
-            let total = 0,
-                countValue = 1,
-                dayValue = 10;
-            const typeValue = calcType.options[calcType.selectedIndex].value,
-                squareValue = +calcSquary.value;
-
-            if (calcCount.value > 1) {
-                countValue += (calcCount.value - 1) / 10;
+        const blockInputValid = () => {
+            function toUppercase(str) {
+                return str.replace(/(^|\s)\S/g, function (st) {
+                    return st.toUpperCase()
+                });
             }
 
-            if (calcDay.value) {
-                if (calcDay.value < 5) {
-                    dayValue *= 2;
-                } else if (calcDay.value < 10) {
-                    dayValue *= 1.5;
-                }
+            const input = document.querySelectorAll('input');
+
+            function valid(event) {
+
+                input.forEach(function () {
+
+                    const target = event.target;
+
+                    if (target.name === 'user_name' || target.name === '.mess') {
+                        target.value = target.value.replace(/[^а-яё ]/gi, '');
+                        target.value = target.value.replace(/\s+/g, ' ');
+                        target.value = target.value.replace(/\-+/g, '');
+                        let newStr = toUppercase(target.value).trim();
+                        return target.value = newStr;
+                    }
+
+                    if (target.matches('.form-phone')) {
+                        target.value = target.value.replace(/[^0-9\+]/g, '')
+                        target.value = target.value.replace(/\-+/g, '-')
+                        target.value = target.value.replace(/\s+/g, ' ')
+                        target.value = target.value.replace(/^-+|-+$/, '')
+                        return target.value.trim();
+                    }
+
+                    if (target.classList.contains('.form-email')) {
+                        target.value = target.value.replace(/[^_@.!~*A-Za-z\-]/g, '')
+                        target.value = target.value.replace(/\s+/g, ' ')
+                        target.value = target.value.replace(/\-+/g, '-')
+                        target.value = target.value.replace(/^-+|-+$/, '')
+                        return target.value.trim();
+                    }
+                });
             }
 
-            if (!!typeValue && !!squareValue) {
-                total = price * typeValue * squareValue * countValue * dayValue;
-            }
-
-            //  totalValue.textContent = total;
-            //анимация суммы - total
-            function timer() {
-                let step = (total / 100) * 10;
-                let n = 0;
-                if (+totalValue.textContent !== total) {
-                    let interval = setInterval(() => {
-                        n += step;
-                        if (n === total) {
-                            clearInterval(interval);
-                        }
-                        totalValue.textContent = parseInt(n);
-                    }, 50);
-                }
-            }
-
-            timer();
+            document.addEventListener('blur', valid, true);
         }
+        blockInputValid();
 
-        calcBlock.addEventListener('change', event => {
-            const target = event.target;
-            if (target.matches('.calc-day') || target.matches('.calc-type') ||
-                target.matches('.calc-square') || target.matches('.calc-count')) {
-                countSum();
-            }
-        });
-    };
+        // калькулятор
+        const calc = (price = 100) => {
+            const calcBlock = document.querySelector('.calc-block'),
+                calcType = document.querySelector('.calc-type'),
+                calcSquary = document.querySelector('.calc-square'),
+                calcDay = document.querySelector('.calc-day'),
+                calcCount = document.querySelector('.calc-count'),
+                totalValue = document.getElementById('total');
 
-    calc(100);
+            const countSum = () => {
+                let total = 0,
+                    countValue = 1,
+                    dayValue = 10;
+                const typeValue = calcType.options[calcType.selectedIndex].value,
+                    squareValue = +calcSquary.value;
 
-    //ajax
-    const sendForm = () => {
-        const errorMessage = 'Что-то пошло не так...',
-            loadMessage = 'Загрузка...',
-            successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
-
-        const postData = (body, outputData, errorData) => {
-            const request = new XMLHttpRequest();
-
-            request.addEventListener('readystatechange', () => {
-                if (request.readyState !== 4) {
-                    return;
+                if (calcCount.value > 1) {
+                    countValue += (calcCount.value - 1) / 10;
                 }
 
-                if (request.status === 200) {
-                    outputData();
-                } else {
-                    errorData(request.status);
+                if (calcDay.value) {
+                    if (calcDay.value < 5) {
+                        dayValue *= 2;
+                    } else if (calcDay.value < 10) {
+                        dayValue *= 1.5;
+                    }
+                }
+
+                if (!!typeValue && !!squareValue) {
+                    total = price * typeValue * squareValue * countValue * dayValue;
+                }
+
+                //  totalValue.textContent = total;
+                //анимация суммы - total
+                function timer() {
+                    let step = (total / 100) * 10;
+                    let n = 0;
+                    if (+totalValue.textContent !== total) {
+                        let interval = setInterval(() => {
+                            n += step;
+                            if (n === total) {
+                                clearInterval(interval);
+                            }
+                            totalValue.textContent = parseInt(n);
+                        }, 50);
+                    }
+                }
+
+                timer();
+            }
+
+            calcBlock.addEventListener('change', event => {
+                const target = event.target;
+                if (target.matches('.calc-day') || target.matches('.calc-type') ||
+                    target.matches('.calc-square') || target.matches('.calc-count')) {
+                    countSum();
                 }
             });
-
-            request.open('POST', './server.php');
-            // request.setRequestHeader('Content-Type', 'multipart/form-data');
-            request.setRequestHeader('Content-Type', 'application/json');
-            // request.send(formData);
-            request.send(JSON.stringify(body));
         };
 
-        const clearInput = idForm => {
-            const form = document.getElementById(idForm);
-            [...form.elements]
-                .filter(item =>
-                    item.tagName.toLowerCase() !== 'button' &&
-                    item.type !== 'button')
-                .forEach(item =>
-                    item.value = '');
-        };
+        calc(100);
 
-        const sendAllForms = idForm => {
-            const form = document.getElementById(idForm);
-            const statusMessage = document.createElement('div');
+        //ajax
+        const sendForm = () => {
+            /*        const errorMessage = 'Что-то пошло не так...',
+                        loadMessage = 'Загрузка...',
+                        successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
 
-            // statusMessage.textContent = 'Тут будет сообщение';
-            statusMessage.style.cssText = 'font-size: 2rem; color: #fff';
+                    const postData = (body, outputData, errorData) => {
+                        const request = new XMLHttpRequest();
 
-            form.addEventListener('submit', event => {
-                const formData = new FormData(form);
-                const body = {};
+                        request.addEventListener('readystatechange', () => {
+                            if (request.readyState !== 4) {
+                                return;
+                            }
 
-                statusMessage.textContent = loadMessage;
-                event.preventDefault();
-                form.appendChild(statusMessage);
+                            if (request.status === 200) {
+                                outputData();
+                            } else {
+                                errorData(request.status);
+                            }
+                        });
 
-                /* for (let val of formData.entries()) {body[val[0]] = val[1];} */
+                        request.open('POST', './server.php');
+                        // request.setRequestHeader('Content-Type', 'multipart/form-data');
+                        request.setRequestHeader('Content-Type', 'application/json');
+                        // request.send(formData);
+                        request.send(JSON.stringify(body));*/
 
-                formData.forEach((val, key) => {
-                    body[key] = val;
+            const postData = body => new Promise((resolve, reject) => {
+                const request = new XMLHttpRequest();
+
+                request.addEventListener('readystatechange', () => {
+                    if (request.readyState !== 4) {
+                        return;
+                    }
+                    if (request.status === 200) {
+                        resolve();
+                    } else {
+                        reject(request.status);
+                    }
                 });
 
-                postData(body, () => {
-                    statusMessage.textContent = successMessage;
+                request.open('POST', './server.php');
+                request.setRequestHeader('Content-Type', 'application/json');
+                request.send(JSON.stringify(body));
+            });
+
+            const clearInput = idForm => {
+                const form = document.getElementById(idForm);
+                [...form.elements]
+                    .filter(item =>
+                        item.tagName.toLowerCase() !== 'button' &&
+                        item.type !== 'button')
+                    .forEach(item =>
+                        item.value = '');
+            };
+
+            const sendAllForms = idForm => {
+                const form = document.getElementById(idForm);
+                const statusMessage = document.createElement('div');
+
+                const showStatus = status => {
+                    const statusList = {
+                        load: {
+                            message: ' Загрузка...',
+                        },
+                        error: {
+                            message: ' Что-то пошло не так...',
+                        },
+                        success: {
+                            message: ' Спасибо! Мы скоро с вами свяжемся!',
+                        }
+                    };
+                    statusMessage.textContent = statusList[status].message;
+                };
+
+                // statusMessage.textContent = 'Тут будет сообщение';
+                statusMessage.style.cssText = 'font-size: 2rem; color: #fff';
+
+                form.addEventListener('submit', event => {
+                    const formData = new FormData(form);
+                    const body = {};
+
+                    // statusMessage.textContent = loadMessage;
+                    event.preventDefault();
+
+                    showStatus('load');
+                    form.appendChild(statusMessage);
+
+                    /* for (let val of formData.entries()) {body[val[0]] = val[1];} */
+
+                    formData.forEach((val, key) => {
+                        body[key] = val;
+                    });
+
+                    postData(body)
+                        .then(() => {
+                            showStatus('success');
+                            clearInput(idForm);
+                        })
+                        .catch(error => {
+                            showStatus('error');
+                            console.error(error);
+                        });
+                    /*statusMessage.textContent = successMessage;
                     clearInput(idForm);
                 }, error => {
                     statusMessage.textContent = errorMessage;
                     console.error(error);
+                */
                 });
-            });
+            };
+            sendAllForms('form1');
+            sendAllForms('form2');
+            sendAllForms('form3');
         };
-        sendAllForms('form1');
-        sendAllForms('form2');
-        sendAllForms('form3');
-    };
-    sendForm();
-});
+        sendForm();
+
+    }
+);
