@@ -274,13 +274,13 @@ window.addEventListener('DOMContentLoaded', function () {
         document.addEventListener('input', (event) => {
             const target = event.target;
             if (target.name === 'user_name') {
-                return target.value = target.value.replace(/[^а-яё -]/gi, '');
+                return target.value = target.value.replace(/[^а-яё ]/gi, '');
             }
             if (target.matches('.form-phone')) {
-                return target.value = target.value.replace(/[^\d()\-]$/g, '');
+                return target.value = target.value.replace(/[^+\d]/g, '');
             }
             if (target.matches('.mess')) {
-                return target.value = target.value.replace(/[^а-яё -]/gi, '');
+                return target.value = target.value.replace(/[^а-яё ,.]/gi, '');
             }
             if (target.classList.contains('form-email')) {
                 return target.value = target.value.replace(/[^_@.!'~*A-Za-z\-]/g, '');
@@ -306,16 +306,15 @@ window.addEventListener('DOMContentLoaded', function () {
                 const target = event.target;
 
                 if (target.name === 'user_name' || target.name === '.mess') {
-                    target.value = target.value.replace(/[^а-яё -]/gi, '');
+                    target.value = target.value.replace(/[^а-яё ]/gi, '');
                     target.value = target.value.replace(/\s+/g, ' ');
-                    target.value = target.value.replace(/\-+/g, '-');
-                    target.value = target.value.replace(/\-+/g, '-');
+                    target.value = target.value.replace(/\-+/g, '');
                     let newStr = toUppercase(target.value).trim();
                     return target.value = newStr;
                 }
 
                 if (target.matches('.form-phone')) {
-                    target.value = target.value.replace(/[^()0-9\-]/g, '')
+                    target.value = target.value.replace(/[^0-9\+]/g, '')
                     target.value = target.value.replace(/\-+/g, '-')
                     target.value = target.value.replace(/\s+/g, ' ')
                     target.value = target.value.replace(/^-+|-+$/, '')
@@ -400,22 +399,75 @@ window.addEventListener('DOMContentLoaded', function () {
 
     //ajax
     const sendForm = () => {
-        const errorMessage = "Error",
-            loadMessage = "Zagruzka...",
-            successMessage = "Success";
+        const errorMessage = 'Что-то пошло не так...',
+            loadMessage = 'Загрузка...',
+            successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
 
-        const form = document.getElementById('form');
-        const statusMessage = document.createElement('div');
-        statusMessage.textContent = "hiuguy";
-        statusMessage.style.cssText = 'font-size: 2rem';
-        form.appendChild(statusMessage);
+        const postData = (body, outputData, errorData) => {
+            const request = new XMLHttpRequest();
 
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-        });
+            request.addEventListener('readystatechange', () => {
+                if (request.readyState !== 4) {
+                    return;
+                }
 
+                if (request.status === 200) {
+                    outputData();
+                } else {
+                    errorData(request.status);
+                }
+            });
 
-    }
+            request.open('POST', './server.php');
+            // request.setRequestHeader('Content-Type', 'multipart/form-data');
+            request.setRequestHeader('Content-Type', 'application/json');
+            // request.send(formData);
+            request.send(JSON.stringify(body));
+        };
 
+        const clearInput = idForm => {
+            const form = document.getElementById(idForm);
+            [...form.elements]
+                .filter(item =>
+                    item.tagName.toLowerCase() !== 'button' &&
+                    item.type !== 'button')
+                .forEach(item =>
+                    item.value = '');
+        };
+
+        const sendAllForms = idForm => {
+            const form = document.getElementById(idForm);
+            const statusMessage = document.createElement('div');
+
+            // statusMessage.textContent = 'Тут будет сообщение';
+            statusMessage.style.cssText = 'font-size: 2rem; color: #fff';
+
+            form.addEventListener('submit', event => {
+                const formData = new FormData(form);
+                const body = {};
+
+                statusMessage.textContent = loadMessage;
+                event.preventDefault();
+                form.appendChild(statusMessage);
+
+                /* for (let val of formData.entries()) {body[val[0]] = val[1];} */
+
+                formData.forEach((val, key) => {
+                    body[key] = val;
+                });
+
+                postData(body, () => {
+                    statusMessage.textContent = successMessage;
+                    clearInput(idForm);
+                }, error => {
+                    statusMessage.textContent = errorMessage;
+                    console.error(error);
+                });
+            });
+        };
+        sendAllForms('form1');
+        sendAllForms('form2');
+        sendAllForms('form3');
+    };
     sendForm();
 });
