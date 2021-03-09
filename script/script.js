@@ -280,7 +280,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 return target.value = target.value.replace(/[^+\d]/g, '');
             }
             if (target.matches('.mess')) {
-                return target.value = target.value.replace(/[^а-яё ,.!?]/gi, '');
+                return target.value = target.value.replace(/[^а-яё ,.!?\d]/gi, '');
             }
             if (target.classList.contains('form-email')) {
                 return target.value = target.value.replace(/[^_@.!'~*A-Za-z\-]/g, '');
