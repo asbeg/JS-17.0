@@ -383,6 +383,7 @@ window.addEventListener('DOMContentLoaded', function () {
                     }, 50);
                 }
             }
+
             timer();
         }
 
@@ -396,4 +397,25 @@ window.addEventListener('DOMContentLoaded', function () {
     };
 
     calc(100);
+
+    //ajax
+    const sendForm = () => {
+        const errorMessage = "Error",
+            loadMessage = "Zagruzka...",
+            successMessage = "Success";
+
+        const form = document.getElementById('form');
+        const statusMessage = document.createElement('div');
+        statusMessage.textContent = "hiuguy";
+        statusMessage.style.cssText = 'font-size: 2rem';
+        form.appendChild(statusMessage);
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+        });
+
+
+    }
+
+    sendForm();
 });
