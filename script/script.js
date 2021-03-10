@@ -382,7 +382,6 @@ window.addEventListener('DOMContentLoaded', function () {
                         }, 50);
                     }
                 }
-
                 timer();
             }
 
@@ -424,7 +423,7 @@ window.addEventListener('DOMContentLoaded', function () {
                         // request.send(formData);
                         request.send(JSON.stringify(body));*/
 
-            const postData = body => new Promise((resolve, reject) => {
+            /*const postData = body => new Promise((resolve, reject) => {
                 const request = new XMLHttpRequest();
 
                 request.addEventListener('readystatechange', () => {
@@ -441,6 +440,15 @@ window.addEventListener('DOMContentLoaded', function () {
                 request.open('POST', './server.php');
                 request.setRequestHeader('Content-Type', 'application/json');
                 request.send(JSON.stringify(body));
+            });*/
+
+            //Fetch-API
+            const postData = body => fetch('./server.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
             });
 
             const clearInput = idForm => {
@@ -476,8 +484,8 @@ window.addEventListener('DOMContentLoaded', function () {
                 statusMessage.style.cssText = 'font-size: 2rem; color: #fff';
 
                 form.addEventListener('submit', event => {
-                    const formData = new FormData(form);
-                    const body = {};
+                    /*const formData = new FormData(form);
+                    const body = {};*/
 
                     // statusMessage.textContent = loadMessage;
                     event.preventDefault();
@@ -487,11 +495,11 @@ window.addEventListener('DOMContentLoaded', function () {
 
                     /* for (let val of formData.entries()) {body[val[0]] = val[1];} */
 
-                    formData.forEach((val, key) => {
+                    /*formData.forEach((val, key) => {
                         body[key] = val;
-                    });
+                    });*/
 
-                    postData(body)
+                    /*postData(body)
                         .then(() => {
                             showStatus('success');
                             clearInput(idForm);
@@ -500,12 +508,23 @@ window.addEventListener('DOMContentLoaded', function () {
                             showStatus('error');
                             console.error(error);
                         });
-                    /*statusMessage.textContent = successMessage;
+                    /!*statusMessage.textContent = successMessage;
                     clearInput(idForm);
                 }, error => {
                     statusMessage.textContent = errorMessage;
                     console.error(error);
-                */
+                *!/
+                });*/
+                    postData(Object.fromEntries(new FormData(form)))
+                        .then(response => {
+                            if (response.status !== 200) throw new Error(`Status network ${request.status}`);
+                            showStatus('success');
+                            clearInput(idForm);
+                        })
+                        .catch(error => {
+                            showStatus('error');
+                            console.error(error);
+                        });
                 });
             };
             sendAllForms('form1');
@@ -513,6 +532,5 @@ window.addEventListener('DOMContentLoaded', function () {
             sendAllForms('form3');
         };
         sendForm();
-
     }
 );

@@ -34,7 +34,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/openserver/OpenServer/domains/ProjectTimer" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -56,6 +56,7 @@
       <workItem from="1615036393669" duration="2944000" />
       <workItem from="1615210449885" duration="592000" />
       <workItem from="1615238161226" duration="360000" />
+      <workItem from="1615367034571" duration="1121000" />
     </task>
     <servers />
   </component>
