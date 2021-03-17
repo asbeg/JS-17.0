@@ -36,6 +36,15 @@ const sendForm = () => {
                 }
             };
             statusMessage.textContent = statusList[status].message;
+
+            if (status === 'success' || status === 'error') {
+                setTimeout(function (){
+                    statusMessage.textContent = '';
+                }, 1000);
+                setTimeout(function () {
+                    document.querySelector('.popup').style.display = 'none';
+                }, 2000);
+            }
         };
 
         statusMessage.style.cssText = 'font-size: 2rem; color: #fff';
