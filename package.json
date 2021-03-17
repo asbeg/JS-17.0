@@ -1,0 +1,27 @@
+{
+  "name": "JS-17.0-Project-Timer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asbeg/JS-17.0.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asbeg/JS-17.0/issues"
+  },
+  "homepage": "https://github.com/asbeg/JS-17.0#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.26.2",
+    "webpack-cli": "^4.5.0"
+  }
+}
